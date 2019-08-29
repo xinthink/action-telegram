@@ -1,10 +1,13 @@
-name: 'Node 12 Template Action'
-description: 'Get started with Node actions'
-author: 'GitHub'
+name: 'Telegram Action'
+description: 'Telegram notification for workflow set up with GitHub Actions'
+author: 'xinthink'
 inputs:
-  myInput:
-    description: 'Input to use'
-    default: 'world'
+  botToken:
+    description: 'The Telegram Bot token'
+    required: true
+  chatId:
+    description: 'The target to which the message will be sent, can be a Telegram Channel or Group'
+    required: true
 runs:
   using: 'node12'
   main: 'lib/main.js'
