@@ -9,7 +9,7 @@
     "test": "jest",
     "clean": "rm -rf lib package-lock.json",
     "rebuild": "yarn clean && yarn build",
-    "release": "yarn && yarn rebuild && yarn npm-lock && mv -f package-lock.json npm.lock && rm -rf node_modules && yarn --prod && mv npm.lock package-lock.json",
+    "release": "yarn clean && yarn && yarn rebuild && yarn npm-lock && mv -f package-lock.json npm.lock && rm -rf node_modules && yarn --prod && mv npm.lock package-lock.json",
     "dev": "yarn clean && yarn",
     "npm-lock": "synp -f -s yarn.lock"
   },
