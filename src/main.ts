@@ -36,8 +36,11 @@ async function _sendMessage(
   const uri = `https://api.telegram.org/bot${core.getInput('botToken')}/sendMessage`;
   const text = `🎸 [${repo.owner}/${repo.repo} ${workflow}/${action}](${repoUrl}/actions).
 
-    \`${ref}\` \`${sha.substr(0, 7)}\` by *${actor}*`;
-  return await request.post(uri, {
+    \`${ref}\` \`${sha.substr(0, 7)}\` by *${actor}*
+
+        ${JSON.stringify(payload)}
+    `;
+  request.post(uri, {
     body: {
       text,
       chat_id: chatId,
