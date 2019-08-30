@@ -7,9 +7,11 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "clean": "rm -rf lib",
+    "clean": "rm -rf lib package-lock.json",
     "rebuild": "yarn clean && yarn build",
-    "release": "yarn && yarn rebuild && rm -rf node_modules && yarn --prod"
+    "release": "yarn && yarn rebuild && yarn npm-lock && mv -f package-lock.json npm.lock && rm -rf node_modules && yarn --prod && mv npm.lock package-lock.json",
+    "dev": "yarn clean && yarn",
+    "npm-lock": "synp -f -s yarn.lock"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "@types/request-promise-native": "^1.0.16",
     "jest": "^24.8.0",
     "jest-circus": "^24.7.1",
+    "synp": "^1.7.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.1"
   }
