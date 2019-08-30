@@ -1,5 +1,11 @@
 name: "PR Checks"
 on: [pull_request, push]
+on:
+  push:
+    branches:
+    - '**/*-release'
+  pull_request:
+    paths: '*'
 
 jobs:
   check_pr:
