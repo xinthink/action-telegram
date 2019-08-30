@@ -3,8 +3,15 @@ on:
   push:
     branches:
     - '**/*-release'
+    - '*-release'
+    - '!**/master'
+    - '!**/release-template'
   pull_request:
-    paths: '*'
+    branches:
+    - '**/*-release'
+    - '*-release'
+    - '!**/master'
+    - '!**/release-template'
 
 jobs:
   check_pr:
