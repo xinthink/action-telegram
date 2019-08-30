@@ -25,10 +25,8 @@ async function _sendMessage(
   botToken: String,
   chatId: String
 ) {
-  // const {
-  //   number, build_url, status, status_message, duration,
-  //   repository, commit, branch, message, author_name,
-  // } = payload;
+  const { repo, ref, sha, payload, workflow, action, actor } = context;
+  const repoUrl = `https://github.com/${repo.owner}/${repo.repo}`;
   // const icon = status === 0 ? '✅' : '🔴';
   // const text = `${icon} [${repository.name} #${number}](${build_url}) *${status_message}* in ${duration}s.
 
@@ -36,7 +34,9 @@ async function _sendMessage(
 
   //   _${message}_`;
   const uri = `https://api.telegram.org/bot${core.getInput('botToken')}/sendMessage`;
-  const text = inspect(context.payload);
+  const text = `🎸 [${repo.owner}/${repo.repo} ${workflow}/${action}](${repoUrl}/actions).
+
+    \`${ref}\` \`${sha.substr(0, 7)}\` by *${actor}*`;
   return await request.post(uri, {
     body: {
       text,
