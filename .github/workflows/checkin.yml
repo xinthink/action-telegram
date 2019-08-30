@@ -1,4 +1,4 @@
-name: "PR Checks"
+name: "Check"
 on:
   push:
     branches:

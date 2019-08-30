@@ -3,8 +3,11 @@
 ### Checkin
 
 - Do checkin source (src)
-- Do checkin build output (lib)
-- Do checkin runtime node_modules
+- **Do not** checkin build output (lib) to **master** branch, we'll build it before release
+- **Do** checkin build output (lib) to **release** branches
+- **Do not** checkin package-lock.json to **master** branch, we'll generate it before release
+- **Do not** checkin node_modules to **master** branch
+- **Do** checkin runtime node_modules to **release** branches
 - Do not checkin devDependency node_modules (husky can help see below)
 
 ### devDependencies
