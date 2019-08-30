@@ -3,11 +3,22 @@ on:
   push:
     branches:
     - '**/*-release'
+    - '*-release'
+    - '!**/master'
+    - '!master'
+    - '!**/release-template'
+    - '!release-template'
   pull_request:
-    paths: '*'
+    branches:
+    - '**/*-release'
+    - '*-release'
+    - '!**/master'
+    - '!master'
+    - '!**/release-template'
+    - '!release-template'
 
 jobs:
-  check_pr:
+  check:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
