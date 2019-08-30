@@ -41,7 +41,7 @@ async function _sendMessage(
   const uri = `https://api.telegram.org/bot${botToken}/sendMessage`;
   const text = `${icon} [${repoFullname}](${repoUrl}/actions) ${workflow} *${jobStatus}*
 
-  ⟜ \`${ref}\` \`${sha.substr(0, 7)}\` by *${actor}*
+  \`${ref}\` \`${sha.substr(0, 7)}\` by *${actor}*
 
   [View details](${repoUrl}/commit/${sha}/checks)`;
   return request.post(uri, {
