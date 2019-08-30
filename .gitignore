@@ -3,3 +3,8 @@ __tests__/runner/*
 
 package-lock.json
 lib/
+
+# for release only
+!lib/
+!package-lock.json
+!node_modules/
