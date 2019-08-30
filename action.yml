@@ -8,6 +8,9 @@ inputs:
   chatId:
     description: 'The target to which the message will be sent, can be a Telegram Channel or Group'
     required: true
+  jobStatus:
+    description: "The current status of the job: job.status, defaults to 'success'"
+    default: 'success'
 runs:
   using: 'node12'
   main: 'lib/main.js'

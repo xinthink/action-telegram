@@ -1,46 +1,50 @@
 import * as core from '@actions/core';
 import { context } from '@actions/github';
-
 import * as request from 'request-promise-native';
-import { inspect } from 'util';
-import { Context } from '@actions/github/lib/context';
 
-async function run() {
+/**
+ * Checksuit result notification through Telegram
+ */
+(async function run() {
   try {
     const botToken = core.getInput('botToken');
     const chatId = core.getInput('chatId');
-    core.debug(`--- sending message to ${chatId} payload=${inspect(context.payload)}`);
-    await _sendMessage(botToken, chatId)
+    const jobStatus = core.getInput('jobStatus');
+    core.debug(`--- sending message, status=${jobStatus} payload=${JSON.stringify(context.payload)}`);
+    await _sendMessage(botToken, chatId, jobStatus)
     core.debug('--- message sent');
   } catch (error) {
     core.setFailed(error.message);
   }
-}
+})()
 
 /**
- * Implementation of Travis-CI result handler.
- * @param payloadJson CI result payload as a JSON string
+ * Send a Telegram message.
+ * @param botToken the Telegram bot token to send the message
+ * @param chatId id of targeted channel or group, to which the message will be sent
+ * @param jobStatus status of the job
  */
 async function _sendMessage(
   botToken: String,
-  chatId: String
+  chatId: String,
+  jobStatus: String = 'success',
 ) {
-  const { repo, ref, sha, payload, workflow, action, actor } = context;
-  const repoUrl = `https://github.com/${repo.owner}/${repo.repo}`;
-  // const icon = status === 0 ? '✅' : '🔴';
-  // const text = `${icon} [${repository.name} #${number}](${build_url}) *${status_message}* in ${duration}s.
+  const { repo, ref, sha, workflow, actor } = context;
+  const repoFullname = `${repo.owner}/${repo.repo}`;
+  const repoUrl = `https://github.com/${repoFullname}`;
+  let icon: String;
+  switch ((jobStatus || '').toLowerCase()) {
+    case 'success': icon = '✅'; break;
+    case 'failure': icon = '🔴'; break;
+    default: icon = '⚠️'; break;
+  }
+  const uri = `https://api.telegram.org/bot${botToken}/sendMessage`;
+  const text = `${icon} [${repoFullname}](${repoUrl}/actions) ${workflow} *${jobStatus}*
 
-  //   \`${branch}\` \`${commit.substr(0, 7)}\` by *${author_name}*
+  ⟜ \`${ref}\` \`${sha.substr(0, 7)}\` by *${actor}*
 
-  //   _${message}_`;
-  const uri = `https://api.telegram.org/bot${core.getInput('botToken')}/sendMessage`;
-  const text = `🎸 [${repo.owner}/${repo.repo} ${workflow}/${action}](${repoUrl}/actions).
-
-    \`${ref}\` \`${sha.substr(0, 7)}\` by *${actor}*
-
-        ${JSON.stringify(payload)}
-    `;
-  request.post(uri, {
+  [View details](${repoUrl}/commit/${sha}/checks)`;
+  return request.post(uri, {
     body: {
       text,
       chat_id: chatId,
@@ -48,15 +52,4 @@ async function _sendMessage(
     },
     json: true,
   });
-
-  // , (e: any, res: request.Response, body: any) => {
-  //   if (e || !res || res.statusCode >= 400) {
-  //     const statusCode = (res || {}).statusCode;
-  //     reject(new Error(`Failed to send message: [${statusCode}] ${e}: ${body}`));
-  //   } else {
-  //     resolve();
-  //   }
-  // });
 }
-
-run();
