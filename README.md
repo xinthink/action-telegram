@@ -17,7 +17,7 @@ Add a step to your [workflow] in order to receive [Telegram] notifications, for 
 ```yml
 - name: notification
   if: cancelled() == false
-  uses: xinthink/action-telegram@v0.1.0
+  uses: xinthink/action-telegram@v1
   with:
     botToken: ${{ secrets.BotToken }}
     chatId: ${{ secrets.ChatID }}
