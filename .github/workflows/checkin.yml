@@ -39,3 +39,11 @@ jobs:
         || (echo "##[error] found changed files after build. please 'npm run build && npm run format'" \
                  "and check in all changes" \
             && exit 1)
+    - name: notification
+      if: cancelled() == false
+      uses: .
+      with:
+        botToken: ${{ secrets.TelegramBotToken }}
+        chatId: ${{ secrets.TelegramTarget }}
+        jobStatus: ${{ job.status }}
+        skipSuccess: false
