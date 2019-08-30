@@ -41,7 +41,7 @@ jobs:
             && exit 1)
     - name: notification
       if: cancelled() == false
-      uses: .
+      uses: ./
       with:
         botToken: ${{ secrets.TelegramBotToken }}
         chatId: ${{ secrets.TelegramTarget }}
