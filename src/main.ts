@@ -10,9 +10,10 @@ import * as request from 'request-promise-native';
     const botToken = core.getInput('botToken');
     const chatId = core.getInput('chatId');
     const jobStatus = core.getInput('jobStatus');
-    core.debug(`--- sending message, status=${jobStatus} payload=${JSON.stringify(context.payload)}`);
-    await _sendMessage(botToken, chatId, jobStatus)
-    core.debug('--- message sent');
+    const skipSuccess = (core.getInput('skipSuccess') || 'true') === 'true';
+    core.debug(`sending message, status=${jobStatus} skipSuccess=${skipSuccess} payload=${JSON.stringify(context.payload)}`);
+    await _sendMessage(botToken, chatId, jobStatus, skipSuccess);
+    core.debug('message sent');
   } catch (error) {
     core.setFailed(error.message);
   }
@@ -28,12 +29,19 @@ async function _sendMessage(
   botToken: String,
   chatId: String,
   jobStatus: String = 'success',
+  skipSuccess: Boolean = true,
 ) {
+  const status = (jobStatus || '').toLowerCase();
+  if (status === 'success' && skipSuccess) {
+    core.debug('skipping successful job');
+    return;
+  }
+
   const { repo, ref, sha, workflow, actor } = context;
   const repoFullname = `${repo.owner}/${repo.repo}`;
   const repoUrl = `https://github.com/${repoFullname}`;
   let icon: String;
-  switch ((jobStatus || '').toLowerCase()) {
+  switch (status) {
     case 'success': icon = '✅'; break;
     case 'failure': icon = '🔴'; break;
     default: icon = '⚠️'; break;

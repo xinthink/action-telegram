@@ -11,6 +11,9 @@ inputs:
   jobStatus:
     description: "The current status of the job: job.status, defaults to 'success'"
     default: 'success'
+  skipSuccess:
+    description: "Only non-success notifications will be sent if true, include success notifications otherwise, defaults to 'true'"
+    default: 'true'
 runs:
   using: 'node12'
   main: 'lib/main.js'
