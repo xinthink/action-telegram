@@ -1,6 +1,9 @@
 name: 'Telegram Action'
 description: 'Telegram notification for workflow set up with GitHub Actions'
 author: 'xinthink'
+branding:
+  icon: 'send'
+  color: 'blue'
 inputs:
   botToken:
     description: 'The Telegram Bot token'
