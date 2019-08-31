@@ -26,7 +26,7 @@ Add a step to your [workflow] in order to receive [Telegram] notifications, for 
 
 > You can find more details in [action.yml]
 
-The message will look like:
+The [Telegram] message will look like:
   - BOT name
 
     🔴 [owner/repo]() Check **Failure**
@@ -39,7 +39,7 @@ The message will look like:
 
 ## Development
 
-I prefer [yarn] for everyday tasks, so there's a `yarn.lock` instead of `package-lock.json` on the *master* branch. We will use [yarn run] ([npm scripts]) for handling the dependencies things, so as for compiling [Typescript] sources.
+[Yarn] is preferred for everyday tasks, so there's a `yarn.lock` instead of `package-lock.json` on the *master* branch. We will use [yarn run] ([npm scripts]) for handling the *node_modules* stuff, and also compiling [Typescript] sources.
 
 - Run command `yarn release` before committing to *release* branches
 - Run command `yarn dev` before doing development tasks or committing to the *master* branch
