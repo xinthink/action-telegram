@@ -39,7 +39,7 @@ The [Telegram] message will look like:
 
 ## Development
 
-[Yarn] is preferred for everyday tasks, so there's a `yarn.lock` instead of `package-lock.json` on the *master* branch. We will use [yarn run] ([npm scripts]) for handling the *node_modules* stuff, and also compiling [Typescript] sources.
+[Yarn] is preferred for everyday tasks, so there's a `yarn.lock` instead of `package-lock.json` on the *master* branch. We will use [yarn run] ([npm scripts]) for handling the *node_modules* stuff, and also compiling [TypeScript] sources.
 
 - Run command `yarn release` before committing to *release* branches
 - Run command `yarn dev` before doing development tasks or committing to the *master* branch
@@ -53,4 +53,4 @@ The [Telegram] message will look like:
 [yarn]: https://yarnpkg.com/
 [yarn run]: https://yarnpkg.com/lang/en/docs/cli/run/
 [npm scripts]: https://docs.npmjs.com/misc/scripts
-[Typescript]: https://www.typescriptlang.org
+[TypeScript]: https://www.typescriptlang.org
