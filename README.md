@@ -3,7 +3,9 @@
 [![Check Status][check-badge]][github-runs]
 [![MIT][license-badge]][license]
 
-A simple [Action] sending [Telegram] notification for workflow set up with [GitHub Actions]
+A simple [Action] sending [Telegram] notifications for workflows set up with [GitHub Actions].
+
+There's an [article on Medium](https://xinthink.com/build-your-own-github-actions-f3454f22f202) which describes how I build this [Action].
 
 [check-badge]: https://github.com/xinthink/action-telegram/workflows/Check/badge.svg
 [github-runs]: https://github.com/xinthink/action-telegram/actions
