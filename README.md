@@ -3,7 +3,9 @@
 [![Check Status][check-badge]][github-runs]
 [![MIT][license-badge]][license]
 
-A simple [Action] sending [Telegram] notification for workflow set up with [GitHub Actions]
+A simple [Action] sending [Telegram] notifications for workflows set up with [GitHub Actions].
+
+There's an [article on Medium](https://xinthink.com/build-your-own-github-actions-f3454f22f202) described in detail how I build this [Action].
 
 [check-badge]: https://github.com/xinthink/action-telegram/workflows/Check/badge.svg
 [github-runs]: https://github.com/xinthink/action-telegram/actions
@@ -17,7 +19,7 @@ Add a step to your [workflow] in order to receive [Telegram] notifications, for 
 ```yml
 - name: notification
   if: cancelled() == false
-  uses: xinthink/action-telegram@v1
+  uses: xinthink/action-telegram@v1.1
   with:
     botToken: ${{ secrets.BotToken }}
     chatId: ${{ secrets.ChatID }}
@@ -39,7 +41,7 @@ The [Telegram] message will look like:
 
 ## Development
 
-[Yarn] is preferred for everyday tasks, so there's a `yarn.lock` instead of `package-lock.json` on the *master* branch. We will use [yarn run] ([npm scripts]) for handling the *node_modules* stuff, and also compiling [Typescript] sources.
+[Yarn] is preferred for everyday tasks, so there's a `yarn.lock` instead of `package-lock.json` on the *master* branch. We will use [yarn run] ([npm scripts]) for handling the *node_modules* stuff, and also compiling [TypeScript] sources.
 
 - Run command `yarn release` before committing to *release* branches
 - Run command `yarn dev` before doing development tasks or committing to the *master* branch
@@ -53,4 +55,4 @@ The [Telegram] message will look like:
 [yarn]: https://yarnpkg.com/
 [yarn run]: https://yarnpkg.com/lang/en/docs/cli/run/
 [npm scripts]: https://docs.npmjs.com/misc/scripts
-[Typescript]: https://www.typescriptlang.org
+[TypeScript]: https://www.typescriptlang.org

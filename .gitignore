@@ -3,6 +3,7 @@ __tests__/runner/*
 
 package-lock.json
 lib/
+*.log
 
 # for release only
 !lib/
