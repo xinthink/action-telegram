@@ -1,6 +1,6 @@
 {
   "name": "action-telegram",
-  "version": "1.1.0-dev",
+  "version": "1.2.0-dev",
   "private": true,
   "description": "Telegram notification for workflow set up with GitHub Actions",
   "main": "lib/main.js",
