@@ -33,7 +33,7 @@ jobs:
       if: cancelled() == false
       uses: ./
       with:
-        botToken: ${{ secrets.TelegramBotToken }}
-        chatId: ${{ secrets.TelegramTarget }}
+        botToken: ${{ secrets.TELEGRAMBOTTOKEN }}
+        chatId: ${{ secrets.TELEGRAMTARGET }}
         jobStatus: ${{ job.status }}
         skipSuccess: false
