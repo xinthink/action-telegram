@@ -1,12 +1,12 @@
-name: 'Telegram Action'
-description: 'Telegram notification for workflow set up with GitHub Actions'
-author: 'xinthink'
+name: 'Send Telegram Messages'
+description: 'Send information to your Telegram via GitHub Actions script'
+author: 'Hajeekn'
 branding:
   icon: 'send'
   color: 'blue'
 inputs:
   botToken:
-    description: 'The Telegram Bot token'
+    description: 'A Telegram Bot token'
     required: true
   chatId:
     description: 'The target to which the message will be sent, can be a Telegram Channel or Group'
