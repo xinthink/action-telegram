@@ -33,7 +33,7 @@ async function _sendMessage(
 ) {
   const status = (jobStatus || '').toLowerCase();
   if (status === 'success' && skipSuccess) {
-    core.debug('skipping successful job');
+    core.debug('The successful task has been skipped~');
     return;
   }
 
@@ -42,8 +42,8 @@ async function _sendMessage(
   const repoUrl = `https://github.com/${repoFullname}`;
   let icon: String;
   switch (status) {
-    case 'success': icon = '✅'; break;
-    case 'failure': icon = '🔴'; break;
+    case 'success': icon = '🎉🎉'; break;
+    case 'failure': icon = '🎃❌'; break;
     default: icon = '⚠️'; break;
   }
   const uri = `https://api.telegram.org/bot${botToken}/sendMessage`;

@@ -1,21 +1,21 @@
-name: 'Telegram Action'
-description: 'Telegram notification for workflow set up with GitHub Actions'
-author: 'xinthink'
+name: 'Send Telegram Messages'
+description: 'Send information to your Telegram via GitHub Actions script'
+author: 'ladjeek-actions'
 branding:
   icon: 'send'
   color: 'blue'
 inputs:
   botToken:
-    description: 'The Telegram Bot token'
+    description: 'A Telegram Bot token'
     required: true
   chatId:
-    description: 'The target to which the message will be sent, can be a Telegram Channel or Group'
+    description: 'A session ID through which users can send information to channels, groups, individuals, etc.'
     required: true
   jobStatus:
-    description: "The current status of the job: job.status, defaults to 'success'"
+    description: "The current status at work, the default is'success'"
     default: 'success'
   skipSuccess:
-    description: "Only non-success notifications will be sent if true, include success notifications otherwise, defaults to 'true'"
+    description: "Skip successfully after the work is completed, turn off by default"
     default: 'true'
 runs:
   using: 'node12'
